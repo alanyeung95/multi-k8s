@@ -13,7 +13,7 @@ spec:
                 component: worker 
         spec:
             containers:
-                - name: client
+                - name: worker 
                   image: stephengrider/multi-worker
                   env:
                       - name: REDIS_HOST
