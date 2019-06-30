@@ -4,7 +4,7 @@ docker build -t alanyeung95/multi-worker:latest -t alanyeung95/multi-worker:$SHA
 docker push alanyeung95/multi-cilent:latest
 docker push alanyeung95/multi-server:latest
 docker push alanyeung95/multi-worker:latest
-docker push alanyeung95/multi-cilent:$SHA
+docker push alanyeung95/multi-client:$SHA
 docker push alanyeung95/multi-server:$SHA
 docker push alanyeung95/multi-worker:$SHA
 kubectl apply -f k8s
