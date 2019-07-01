@@ -10,9 +10,9 @@ metadata:
 spec:
     tls:
         - hosts:
-                - justalittledomain.com
-                - www.justalittledomain.com
-            secretName: k8s-multi-com
+            - justalittledomain.com
+            - www.justalittledomain.com
+          secretName: k8s-multi-com
     rules:
         - host: justalittledomain.com
           http:
