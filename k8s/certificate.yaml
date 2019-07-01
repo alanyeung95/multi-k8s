@@ -15,7 +15,7 @@ spec:
         config:
             - http01:
                 ingressClass: nginx
-            - domains:
+              domains:
                 - justalittledomain.com
                 - www.justalittledomain.com
         
