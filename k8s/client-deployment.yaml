@@ -4,6 +4,7 @@ metadata:
     name: client-deployment
 spec: 
     replicas: 3
+    #selector can be used for deployment to find the pods and manage them by using label such as {component web}
     selector:
         matchLabels:
             component: web
@@ -14,6 +15,6 @@ spec:
         spec:
             containers:
                 - name: client
-                  image: stephengrider/multi-client
+                  image: alanyeung95/multi-client
                   ports:
                       - containerPort: 3000

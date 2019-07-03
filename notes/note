@@ -1,0 +1,5 @@
+Q: why Deployment kind instead of Pod kind?
+A: deployment kind can control the ports, pod can only allow to modify images, spec.initcontainers, spec.activedeadline, spec.toleration
+
+sha for debpugging
+latest for implicit tagging for new engineer
