@@ -22,9 +22,9 @@ spec:
                   ports:  
                       - containerPort: 5432 
                   volumeMounts:
-                      - name: postgres-storage
-                        mountPath: /var/lib/postgresql/data
-                        subPath: postgres
+                      - name: postgres-storage # should be the same in spec.volumes.name
+                        mountPath: /var/lib/postgresql/data # path inside the container
+                        subPath: postgres # data store this folder inside the persistenvolumeclaim
                   env:
                       - name: PGPASSWORD
                         valueFrom:

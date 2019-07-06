@@ -4,7 +4,10 @@ metadata:
     name: database-persistent-volume-claim
 spec: 
     accessModes:
+        # can be used by a single node
         - ReadWriteOnce
+        # readonlymany -> multiple nodes can read from this
+        # readwritemany -> can be read and written to by many ndoes
     resources:
         requests:
             storage: 2Gi
