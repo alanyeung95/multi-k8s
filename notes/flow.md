@@ -5,6 +5,9 @@ environment
 secret
 
 ## Presistent volume claim
+PVs are resources in the cluster. PVCs are requests for those resources and also act as claim checks to the resource. The interaction between PVs and PVCs follows this lifecycle:
+
+
 ```
 alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get storageclass
 NAME                 PROVISIONER            AGE
@@ -24,10 +27,13 @@ VolumeBindingMode:     Immediate
 Events:                <none>
 ```
 ```
-
 alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                      STORAGECLASS   REASON   AGE
 pvc-0e6a00c7-9b1f-11e9-a137-42010a8c0189   2Gi        RWO            Delete           Bound    default/database-persistent-volume-claim   standard                5d18h
+
+alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get pvc
+NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+database-persistent-volume-claim   Bound    pvc-0e6a00c7-9b1f-11e9-a137-42010a8c0189   2Gi        RWO            standard       5d18h
 ```
 # Ingress load balancer
 
