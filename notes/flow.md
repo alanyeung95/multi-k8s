@@ -1,8 +1,16 @@
+# Local environment
+minikube
+
 # Development & configuration
 yaml
 PVC
 environment
 secret
+
+## Client apps
+* Client: send api, Indexes I have seen -> query server pg, Calculated Values -> query server redis
+* Worker: execute Fib function, listen redis message, save the key, value {10, Fib(10)} into redis
+* Server: API server, insert key/index to pg, publish key/index message to redis
 
 ## Presistent volume claim
 PVs are resources in the cluster. PVCs are requests for those resources and also act as claim checks to the resource. The interaction between PVs and PVCs follows this lifecycle:
@@ -35,7 +43,29 @@ alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get pvc
 NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 database-persistent-volume-claim   Bound    pvc-0e6a00c7-9b1f-11e9-a137-42010a8c0189   2Gi        RWO            standard       5d18h
 ```
+
+create environment variable
+```
+# kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+```
 # Ingress load balancer
+* Load-balancer can only give you get access on one set of pod (e.g. server pod)
+* ingress controller can allow you access 2 or more set of pod (e.g. server, client pod)
+* Interesting point, what about we put load-balance just before the ingress controller?
+
+## Local development
+Use ingress nginx
+https://github.com/kubernetes/ingress-nginx
+
+Run this command to create the ingress controller pod
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
+minikube addons enable ingress
+```
+
+## K8s
+Got to helm section
+
 
 # Production deployment
 open Github
@@ -69,11 +99,14 @@ use deploy.sh to build image, push image to docker hub, kubect apply -f k8s, kub
 
 Gcloud kubectl create secret????? why
 
-# Helm
-## install ingress
 
-
-
+## Helm
+### install ingress by using Helm (package manager for k8s)
+```
+curl -LO https://git.io/get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
+```
 
 
 
