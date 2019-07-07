@@ -48,12 +48,11 @@ create environment variable
 ```
 # kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
 ```
-# Ingress load balancer
+## Ingress load balancer
 * Load-balancer can only give you get access on one set of pod (e.g. server pod)
 * ingress controller can allow you access 2 or more set of pod (e.g. server, client pod)
 * Interesting point, what about we put load-balance just before the ingress controller?
 
-## Local development
 Use ingress nginx
 https://github.com/kubernetes/ingress-nginx
 
@@ -62,9 +61,7 @@ Run this command to create the ingress controller pod
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
 minikube addons enable ingress
 ```
-
-## K8s
-Got to helm section
+ingress in k8s please go to helm section
 
 
 # Production deployment
@@ -108,6 +105,17 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
+### install tiller
+``` 
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+```
+
+### use helm
+```
+helm init --service-account tiller --upgrade
+helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
+```
 
 
 
