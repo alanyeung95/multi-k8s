@@ -1,6 +1,13 @@
 # Local environment
 minikube
 
+## skaffold
+hot reload feature for local k8s development
+inject updated file (with pre-defined file type into certain pods)
+```
+skaffold dev
+```
+
 # Development & configuration
 yaml
 PVC
@@ -116,11 +123,6 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 helm init --service-account tiller --upgrade
 helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 ```
-
-
-
-
-
 
 # Anything? 
 cancel the google cloud bill then activate again? May need to update the service key?
