@@ -1,6 +1,13 @@
 # Local environment
 minikube
 
+## skaffold
+hot reload feature for local k8s development
+inject updated file (with pre-defined file type into certain pods)
+```
+skaffold dev
+```
+
 # Development & configuration
 yaml
 PVC
@@ -117,10 +124,22 @@ helm init --service-account tiller --upgrade
 helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 ```
 
+# HTTPS
+what is cert-manager and issuer???????
+## Install cert-manager
+```
+helm install --name cert-manager --namespace kube-system stable/cert-manager
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+helm install   --name cert-manager   --namespace cert-manager   --version v0.8.1   jetstack/cert-manager
 
+# verify installation
+kubectl describe certificates
+```
 
+## Issuer
 
-
+## update ingress config for HTTPS
 
 # Anything? 
 cancel the google cloud bill then activate again? May need to update the service key?
