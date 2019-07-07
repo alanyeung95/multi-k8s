@@ -21,10 +21,11 @@ script:
     - docker run alanyeung95/react-test npm test -- --coverage
 
 deploy:
-    provider: script
-    script: bash ./deploy.sh
-    on: 
-        branch: 
-            only:
-            - master
-            - http
+    - provider: script
+      script: bash ./deploy.sh
+      on: 
+          branch: master
+    - provider: script
+      script: bash ./deploy.sh
+      on: 
+          branch: http
