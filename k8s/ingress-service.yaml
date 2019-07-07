@@ -1,4 +1,7 @@
-apiVersion: networking.k8s.io/v1beta1
+# local dev
+# apiVersion: networking.k8s.io/v1beta1
+# cloud config
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
     name: ingress-service
