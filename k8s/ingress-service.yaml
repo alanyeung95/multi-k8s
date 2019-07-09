@@ -10,11 +10,11 @@ metadata:
 spec:
     tls:
         - hosts:
-            - justalittledomain.com
-            - www.justalittledomain.com
+            - justalittleplace.com
+            - www.justalittleplace.com
           secretName: k8s-multi-com
     rules:
-        - host: justalittledomain.com
+        - host: justalittleplace.com
           http:
             paths:
                 - path: /?(.*)
@@ -25,7 +25,7 @@ spec:
                   backend:
                       serviceName: server-cluster-ip-service
                       servicePort: 5000
-        - host: www.justalittledomain.com
+        - host: www.justalittleplace.com
           http:
             paths:
                 - path: /?(.*)

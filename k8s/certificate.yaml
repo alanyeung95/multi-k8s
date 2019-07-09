@@ -7,15 +7,15 @@ spec:
     issuerRef:
         name: letsencrypt-prod
         kind: ClusterIssuer
-    commonName: justalittledomain.com
+    commonName: justalittleplace.com
     dnsNames:
-        - justalittledomain.com
-        - www.justalittledomain.com
+        - justalittleplace.com
+        - www.justalittleplace.com
     acme:
         config:
             - http01:
                 ingressClass: nginx
               domains:
-                - justalittledomain.com
-                - www.justalittledomain.com
+                - justalittleplace.com
+                - www.justalittleplace.com
         
