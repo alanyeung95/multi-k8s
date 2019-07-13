@@ -131,6 +131,9 @@ what is cert-manager and issuer???????
 Sets up infra to respond to HTTP challenge
 Gets certificate, stores it in secret
 ```
+## IMPORTANT: you MUST install the cert-manager CRDs **before** installing the
+## cert-manager Helm chart
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 helm install   --name cert-manager   --namespace cert-manager   --version v0.8.1   jetstack/cert-manager
