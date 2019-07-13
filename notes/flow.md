@@ -155,4 +155,27 @@ Object describing details about the certificate that should be obtained
 Check this commit
 https://github.com/alanyeung95/multi-k8s/commit/ab6645a09fdd5899098d858751a8f4da7eefe2d9
 # Anything? 
-cancel the google cloud bill then activate again? May need to update the service key?
+## Create a new google cloud project
+###  create project
+### link to billing account
+### k8s engine -> enable billing, create cluster
+###  IAM & admin -> create service account, role k8s engine admin (create/delete obj)
+```
+docker run -it -v $(pwd):/app ruby:2.3 sh
+
+# install travis cli install the shell
+gem install travis --no-document
+travis encrypt-file service-account.json -r alanyeung95/multi-k8s
+
+# may need to update openssl config in .travis.yml as well
+```
+### update project id (may include compute zone as well) in .travis.yml 
+
+### set up secret
+```
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+```
+
+### install helm and triller, then use helm
+
+### commit git and let travis-ci deploy to google cloud!!!
