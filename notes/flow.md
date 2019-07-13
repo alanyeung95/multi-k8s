@@ -131,7 +131,9 @@ what is cert-manager and issuer???????
 Sets up infra to respond to HTTP challenge
 Gets certificate, stores it in secret
 ```
-helm install --name cert-manager --namespace kube-system stable/cert-manager
+kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
+# depreciated?
+# helm install --name cert-manager --namespace kube-system stable/cert-manager
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 helm install   --name cert-manager   --namespace cert-manager   --version v0.8.1   jetstack/cert-manager
@@ -179,3 +181,10 @@ kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
 ### install helm and triller, then use helm
 
 ### commit git and let travis-ci deploy to google cloud!!!
+
+## change cluster size?
+1.  make sure the **replicas** in your docker yaml file is updated
+2.  you can type the following cmd in gc console if your cluster is created already
+```
+gcloud container clusters resize multi-cluster    --size 3
+```
