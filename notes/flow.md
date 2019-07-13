@@ -126,7 +126,10 @@ helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 
 # HTTPS
 what is cert-manager and issuer???????
+
 ## Install cert-manager
+Sets up infra to respond to HTTP challenge
+Gets certificate, stores it in secret
 ```
 helm install --name cert-manager --namespace kube-system stable/cert-manager
 helm repo add jetstack https://charts.jetstack.io
@@ -138,8 +141,18 @@ kubectl describe certificates
 ```
 
 ## Issuer
+Object telling cert manager where to get the certificate from
+
+## Certificate
+Object describing details about the certificate that should be obtained
 
 ## update ingress config for HTTPS
 
+# What if you want to change the HTTPS domain?
+* edit k8s/certificate.yaml
+* edit k8s/ingress-service.yaml
+
+Check this commit
+https://github.com/alanyeung95/multi-k8s/commit/ab6645a09fdd5899098d858751a8f4da7eefe2d9
 # Anything? 
 cancel the google cloud bill then activate again? May need to update the service key?
