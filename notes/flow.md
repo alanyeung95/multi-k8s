@@ -131,9 +131,6 @@ what is cert-manager and issuer???????
 Sets up infra to respond to HTTP challenge
 Gets certificate, stores it in secret
 ```
-kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
-# depreciated?
-# helm install --name cert-manager --namespace kube-system stable/cert-manager
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 helm install   --name cert-manager   --namespace cert-manager   --version v0.8.1   jetstack/cert-manager
