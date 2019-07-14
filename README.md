@@ -1,3 +1,15 @@
+# Introduction
+
+
+In this project we have deployed a react application into a google cloud, with the kubernetes engine.
+
+## React app architecture
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/reactapp.png)
+
+## k8s app architecture
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/node.png)
+
+
 # Local environment
 minikube
 
@@ -127,6 +139,9 @@ helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 # HTTPS
 what is cert-manager and issuer???????
 
+## Get a domain name
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/domain.png)
+
 ## Install cert-manager
 Sets up infra to respond to HTTP challenge
 Gets certificate, stores it in secret
@@ -150,14 +165,22 @@ Object describing details about the certificate that should be obtained
 
 ## update ingress config for HTTPS
 
+## Final state 
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/deploymentunit.png)
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/gcloud_shell.png)
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/google_load-balancer.png)
+
+
 # What if you want to change the HTTPS domain?
 * edit k8s/certificate.yaml
 * edit k8s/ingress-service.yaml
 
 Check this commit
 https://github.com/alanyeung95/multi-k8s/commit/ab6645a09fdd5899098d858751a8f4da7eefe2d9
-# Anything? 
-## Create a new google cloud project
+
+
+# What if we....
+## 1. Delete the project and recreate a new google cloud project
 ###  create project
 ### link to billing account
 ### k8s engine -> enable billing, create cluster
@@ -182,7 +205,7 @@ kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
 
 ### commit git and let travis-ci deploy to google cloud!!!
 
-## change cluster size?
+## 2. Change the cluster size?
 1.  make sure the **replicas** in your docker yaml file is updated
 2.  you can type the following cmd in gc console if your cluster is created already
 ```
