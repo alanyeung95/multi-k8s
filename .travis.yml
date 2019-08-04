@@ -19,7 +19,7 @@ before_install:
 
 script:
     - docker run alanyeung95/react-test npm test -- --coverage
-
+      #  - docker run -e CI=true USERNAME/docker-react npm run test
 deploy:
     provider: script
     script: bash ./deploy.sh

@@ -1,0 +1,20 @@
+minikube start
+kubectl apply -f client-node-port.yaml 
+
+minikube ip
+kubectl describe pod client-pod
+
+deployment kind can control the ports, pod can only allow to modify images, spec.initcontainers, spec.activedeadline, spec.toleration
+selector can be used for deployment to find the pods and manage them by using label such as {component web}
+
+kubectl get pods -o wide
+
+
+
+change new images
+# kubectl set image deployment/client-deployment client=stephengrider/multi-client:v5
+
+temp config docker client connect to kube docker server
+# eval $(minikube docker-env)
+
+# docker system prune -a

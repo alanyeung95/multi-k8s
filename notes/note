@@ -1,13 +1,5 @@
-Q: what does docker run mean?
-A: docker run = docker create + docker start -a
-docker start with flag '-a' can let you attach into container and see the output
-
 Q: why Deployment kind instead of Pod kind?
 A: deployment kind can control the ports, pod can only allow to modify images, spec.initcontainers, spec.activedeadline, spec.toleration
 
 sha for debpugging
 latest for implicit tagging for new engineer
-
-Q: what is the meaning of '-it' flag in docker run cmd?
-A: default will connect the stdout inside the container, if we want to input something into container, we need '-it' for stdin.
-The -it instructs Docker to allocate a pseudo-TTY connected to the container’s stdin; creating an interactive bash shell in the container.

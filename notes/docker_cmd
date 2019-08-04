@@ -1,0 +1,15 @@
+Q: what does docker run mean?
+A: docker run = docker create + docker start -a
+docker start with flag '-a' can let you attach into container and see the output
+
+Q: what is the meaning of '-it' flag in docker run cmd?
+A: default will connect the stdout inside the container, if we want to input something into container, we need '-it' for stdin.
+The -it instructs Docker to allocate a pseudo-TTY connected to the container’s stdin; creating an interactive bash shell in the container.
+-i for stdin, stdout, stderr, -t for nice formatting
+
+docker logs -f [container_id]
+docker kill vs docker stop. If the container cannot be stopped after using docker stop, docker kill will be called after 10s. One docker cmd will cause this, docker create busybox ping google.com as an example
+
+# take a snapshot of container and set a default id to a image
+docker commit -c 'CMD ["REDIS-SERVER"]' CONTAINER_ID
+
