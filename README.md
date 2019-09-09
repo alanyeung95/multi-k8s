@@ -3,17 +3,32 @@
 
 In this project we have deployed a react application into a google cloud, with the kubernetes engine.
 
+# Architecture
 ## React app architecture
 ![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/reactapp.png)
+
+
+### Client apps explanation
+* Client: sending api, list indexes I have seen -> query server pg & query server redis
+* Worker: execute Fib function, listen redis message, save the key, value {10, Fib(10)} into redis
+* Server: API server, insert key/index to pg, publish key/index message to redis
 
 ## k8s app architecture
 ![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/node.png)
 
 
 # Local environment
-minikube
 
-## skaffold
+## Minikube
+We are using minikube to stimulate k8s environment in local machine
+
+### Some minikube cmd we use in this proj
+```
+minikube start
+minikube ip
+```
+
+## Skaffold
 hot reload feature for local k8s development
 inject updated file (with pre-defined file type into certain pods)
 ```
@@ -21,15 +36,6 @@ skaffold dev
 ```
 
 # Development & configuration
-yaml
-PVC
-environment
-secret
-
-## Client apps
-* Client: send api, Indexes I have seen -> query server pg, Calculated Values -> query server redis
-* Worker: execute Fib function, listen redis message, save the key, value {10, Fib(10)} into redis
-* Server: API server, insert key/index to pg, publish key/index message to redis
 
 ## Presistent volume claim
 PVs are resources in the cluster. PVCs are requests for those resources and also act as claim checks to the resource. The interaction between PVs and PVCs follows this lifecycle:
@@ -210,4 +216,22 @@ kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
 2.  you can type the following cmd in gc console if your cluster is created already
 ```
 gcloud container clusters resize multi-cluster    --size 3
+```
+
+# Q&A
+Q: why Deployment kind instead of Pod kind?
+```
+Deployment kind can control the ports, pod can only allow to modify images, spec.initcontainers, spec.activedeadline, spec.toleration
+```
+
+Q: Why we are using sha for docker image tagging
+```
+First, it help us debugging with a commit hash. Second, it is an implicit tagging for new engineer
+```
+
+Q: what is the meaning of '-it' flag in docker run cmd?
+```
+Docker run will default connect the stdout inside the container, if we want to input something into container, we need '-it' for stdin.
+The -it instructs Docker to allocate a pseudo-TTY connected to the container’s stdin; creating an interactive bash shell in the container.
+-i for stdin, stdout, stderr, -t for nice formatting
 ```
