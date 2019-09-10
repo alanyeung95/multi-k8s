@@ -42,12 +42,12 @@ PVs are resources in the cluster. PVCs are requests for those resources and also
 
 
 ```
-alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get storageclass
+alanyeung95@cloudshell:~ (multi-k8s-245207)$ kubectl get storageclass
 NAME                 PROVISIONER            AGE
 standard (default)   kubernetes.io/gce-pd   6d21h
 ```
 ```
-alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl describe storageclass
+alanyeung95@cloudshell:~ (multi-k8s-245207)$ kubectl describe storageclass
 Name:                  standard
 IsDefaultClass:        Yes
 Annotations:           storageclass.beta.kubernetes.io/is-default-class=true
@@ -60,11 +60,11 @@ VolumeBindingMode:     Immediate
 Events:                <none>
 ```
 ```
-alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get pv
+alanyeung95@cloudshell:~ (multi-k8s-245207)$ kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                      STORAGECLASS   REASON   AGE
 pvc-0e6a00c7-9b1f-11e9-a137-42010a8c0189   2Gi        RWO            Delete           Bound    default/database-persistent-volume-claim   standard                5d18h
 
-alanyeung1995@cloudshell:~ (multi-k8s-245207)$ kubectl get pvc
+alanyeung95@cloudshell:~ (multi-k8s-245207)$ kubectl get pvc
 NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 database-persistent-volume-claim   Bound    pvc-0e6a00c7-9b1f-11e9-a137-42010a8c0189   2Gi        RWO            standard       5d18h
 ```
@@ -143,12 +143,21 @@ helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
 ```
 
 # HTTPS
-what is cert-manager and issuer???????
 
 ## Get a domain name
+Domain names from google domain or namecheap can work in our project
 ![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/domain.png)
 
+
+
 ## Install cert-manager
+
+what is cert-manager?
+```
+cert-manager is a Kubernetes add-on to automate the management and issuance of TLS certificates. 
+It will ensure certificates are valid and up to date periodically, and attempt to renew certificates at an appropriate time before expiry.
+```
+
 Sets up infra to respond to HTTP challenge
 Gets certificate, stores it in secret
 ```
@@ -187,10 +196,11 @@ https://github.com/alanyeung95/multi-k8s/commit/ab6645a09fdd5899098d858751a8f4da
 
 # What if we....
 ## 1. Delete the project and recreate a new google cloud project
-###  create project
-### link to billing account
-### k8s engine -> enable billing, create cluster
-###  IAM & admin -> create service account, role k8s engine admin (create/delete obj)
+1. create project
+2. link to billing account
+3. k8s engine -> enable billing, create cluster
+4. IAM & admin -> create service account, role k8s engine admin (create/delete obj)
+5. encrypt the json from IAM 
 ```
 docker run -it -v $(pwd):/app ruby:2.3 sh
 
@@ -200,16 +210,17 @@ travis encrypt-file service-account.json -r alanyeung95/multi-k8s
 
 # may need to update openssl config in .travis.yml as well
 ```
-### update project id (may include compute zone as well) in .travis.yml 
 
-### set up secret
+6. update project id (may include compute zone as well) in .travis.yml 
+
+7. set up secret
 ```
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
 ```
 
-### install helm and triller, then use helm
+8. install helm and triller, then use helm
 
-### commit git and let travis-ci deploy to google cloud!!!
+9. commit git and let travis-ci deploy to google cloud!!!
 
 ## 2. Change the cluster size?
 1.  make sure the **replicas** in your docker yaml file is updated
