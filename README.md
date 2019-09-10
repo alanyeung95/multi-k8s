@@ -179,6 +179,7 @@ Object telling cert manager where to get the certificate from
 Object describing details about the certificate that should be obtained
 
 ## update ingress config for HTTPS
+Check the config for **HTTPS** [here](https://github.com/alanyeung95/multi-k8s/blob/master/k8s/ingress-service.yaml) 
 
 ## Final state 
 ![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/deploymentunit.png)
