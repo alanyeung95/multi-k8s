@@ -98,16 +98,15 @@ travis.yaml
 set docker_username and password as env in travis
 
 ## Google cloud
-greate google cloud project & billing account
-install google cloud sdk (as travis will deploy apps to google cloud k8s environment)
-activate google service account, get service account key which is a json file
-use Travis CLI to encrypt service-account.json , either install Ruby or just use docker with Ruby pre-installed
+1.  greate google cloud project & billing account
+2.  install google cloud sdk (as travis will deploy apps to google cloud k8s environment)
+3.  activate google service account, get service account key which is a json file
+4.  use Travis CLI to encrypt service-account.json , either install Ruby or just use docker with Ruby pre-installed
 
 Gloud config
 ```
-gcloud config set project multi-k8s-245207[project_id]
+gcloud config set project multi-k8s-246609[project_id]
 gcloud config set compute/zone asia-east1-a
-
 gcloud container clusters get-credentials multi-cluster
 # show nothing
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypgpassword123
@@ -119,9 +118,6 @@ test image, if ok, run deploy.sh
 ### deploy
 use deploy.sh to build image, push image to docker hub, kubect apply -f k8s, kubectl set image
 
-Gcloud kubectl create secret????? why
-
-
 ## Helm
 ### install ingress by using Helm (package manager for k8s)
 ```
@@ -131,6 +127,8 @@ chmod 700 get_helm.sh
 ```
 
 ### install tiller
+Tiller is the in-cluster component of Helm. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources. It also stores the objects that represent releases.
+
 ``` 
 kubectl create serviceaccount --namespace kube-system tiller
 kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
