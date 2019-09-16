@@ -13,6 +13,9 @@ In this project we have deployed a react application into a google cloud, with t
 * Worker: execute Fib function, listen redis message, save the key, value {10, Fib(10)} into redis
 * Server: API server, insert key/index to pg, publish key/index message to redis
 
+#### Application preview
+![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/app_preview.png)
+
 ## k8s app architecture
 ![alt text](https://github.com/alanyeung95/multi-k8s/blob/master/diagram/node.png)
 
